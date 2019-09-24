@@ -1,0 +1,76 @@
+import math
+print ("\nYou need to know the length of two sides to use this calculator \nPlease insert zero '0' where you do not know the lenght of a side\n\n")
+o = float(input('Please insert length of the opposite side '))
+while o < 0:
+    print ('Please insert a positive integer equal to or greater than 0')
+    o = float(input('Please insert length of the opposite side '))
+a = float(input('Please insert length of the adjacent side '))
+while a < 0:
+    print ('Please insert a positive integer equal to or greater than 0')
+    a = float(input('Please insert length of the adjacent side '))
+h = float(input('Please insert length of the hypothenus '))
+while h < 0:
+    print ('Please insert a positive integer equal to or greater than 0')
+    h = float(input('Please insert length of the hypothenus '))
+if h > 0:
+    while h < o or h < a:
+        print ('The hypothenus should be longer than the opposite and longer than the adjacent sides')
+        if h < o:
+            h = float(input('Please insert length of the hypothenus '))
+            o = float(input('Please insert length of the opposite side again '))
+        if h < a:
+            h = float(input('Please insert length of the hypothenus '))
+            a = float(input('Please insert length of the adjacent side '))
+def hypo(o,a,h):
+  if a == 0:
+    while o == 0 or h == 0:
+        print ('as adjacent length is unknown, the opposite and hypothenus MUST both be greater than 0')
+        if o == 0:
+            o = float(input('Please insert length of the opposite side '))
+        else:
+            h = float(input('Please insert length of the hypothenus '))
+            while h < o:
+                print ('hypothenus must be the longest of the known sides')
+                h = float(input('Please insert length of the hypothenus '))
+    sinX = (o/h)
+    #print (sinX)
+    X = math.asin(sinX)
+    output = math.degrees(X)
+    a = math.sqrt((h**2) - (o**2))
+    print ('adjacent lenght is %s' %(a))
+    print ("SOH outcome = %s radians" %(X))
+    return output
+  elif o == 0:
+    while a == 0 or h == 0:
+        print ('as opposite length is unknown, the adjacent and hypothenus MUST both be greater than 0')
+        if a == 0:
+            a = float(input('Please insert length of the adjacent side '))
+        else:
+            h = float(input('Please insert length of the hypothenus '))
+            while h < a:
+                print ('hypothenus must be the longest of the known sides')
+                h = float(input('Please insert length of the hypothenus '))
+    cosX = (a/h)
+    #print (cosX)
+    X = math.acos(cosX)
+    output = math.degrees(X)
+    o = math.sqrt((h**2) - (a**2))
+    print ('adjacent lenght is %s' %(o))
+    print ("CAH outcome = %s radians" %(X))
+    return output
+  else:
+    while a == 0 or o == 0:
+        print ('as hypothenus length is unknown, the adjacent and opposite sides MUST both be greater than 0')
+        if o == 0:
+            o = float(input('Please insert length of the opposite side '))
+        else:
+            a = float(input('Please insert length of the adjacent side '))
+    tanX = (o/a)
+    #print (tanX)
+    X = math.atan(tanX)
+    output = math.degrees(X)
+    h = math.sqrt((o**2) + (a**2))
+    print ('hypothenus lenght is %s' %(h))
+    print ("TOA outcome = %s radians" %(X))
+    return output
+print ('your angle is ' + str(hypo(o,a,h)) + ' degrees')
